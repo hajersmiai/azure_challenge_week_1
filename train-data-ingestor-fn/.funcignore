@@ -1,0 +1,31 @@
+# Exclude virtual environments
+venv/
+venv*/ 
+*.pyc
+__pycache__/
+
+# Git files
+.git/
+.gitignore
+
+# VSCode and local config
+.vscode/
+*.swp
+*.swo
+
+# Tests and local dev files
+tests/
+*.log
+
+# Python build files
+*.egg-info/
+dist/
+build/
+
+# Env variables or secrets (si présents)
+.env
+.env.*
+
+# Cache
+*.db
+.DS_Store
