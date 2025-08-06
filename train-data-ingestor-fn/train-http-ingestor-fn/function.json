@@ -1,12 +1,6 @@
 {
-  "scriptFile": "main.py",
+  "scriptFile": "__init__.py",
   "bindings": [
-    {
-      "name": "mytimer",
-      "type": "timerTrigger",
-      "direction": "in",
-      "schedule": "0 */15 * * * *"
-    },
     {
       "authLevel": "function",
       "type": "httpTrigger",

@@ -1,0 +1,9 @@
+{
+    "azureFunctions.deploySubpath": "train-data-ingestor-fn",
+    "azureFunctions.scmDoBuildDuringDeployment": true,
+    "azureFunctions.pythonVenv": ".venv",
+    "azureFunctions.projectLanguage": "Python",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureAutomation.directory.basePath": "c:\\Users\\hajer"
+}
