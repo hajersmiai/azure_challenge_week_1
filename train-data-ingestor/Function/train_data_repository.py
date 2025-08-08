@@ -64,10 +64,11 @@ class TrainDataRepository:
     dimension records. The fact table does not perform deduplication; it
     always inserts a new movement event.
     """
+    
     def __init__(self, server: str, database: str, uid: str, pwd: str) -> None:
-        # Create SQLAlchemy engine with pymssql (pure Python)
         conn_str = f"mssql+pymssql://{uid}:{pwd}@{server}:1433/{database}"
         self.engine: Engine = create_engine(conn_str, echo=False, future=True)
+        
     # ------------------------------------------------------------------
     # Helper methods to fetch or create numeric keys
     # ------------------------------------------------------------------

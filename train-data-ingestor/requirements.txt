@@ -3,3 +3,5 @@ pandas
 requests
 pymssql
 sqlalchemy
+pyodbc
+aiohttp
