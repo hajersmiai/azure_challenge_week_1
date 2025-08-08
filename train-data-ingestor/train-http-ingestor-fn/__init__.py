@@ -91,13 +91,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         from Function.function import ingest_all_data
         try:
             logger.info("TEST 5: Appel à run_direct_insertion")
-            """inserter = DirectInsertor(server="train-sql-serve-hajer.database.windows.net",
+            inserter = DirectInsertor(server="train-sql-serve-hajer.database.windows.net",
                         database="train-data-db",
                         uid="sqladmin",
                         pwd="Th021008...."
                     )
-            inserter.ingest_all_data()"""
-            ingest_all_data()
+            inserter.ingest_all_data()
+            ##ingest_all_data()
             message += " | Direct insertion OK"
         except Exception as e:
             logger.error(f"Error in DirectInsertor.run_direct_insertion: {e}")
