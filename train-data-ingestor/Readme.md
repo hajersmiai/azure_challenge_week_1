@@ -88,8 +88,6 @@ Handles **direct ingestion** of raw API data to SQL (mainly for debug and full r
 ### `TrainDataRepository`
 Core interface between iRail API, data transformation logic, and SQL database operations.
 
----
-
 ##  Azure Functions & Their Roles
 
 This project uses a modular function-based architecture, powered by Azure Functions, each with a distinct purpose in the train data ingestion pipeline. Below is a breakdown of each relevant function and its role:
@@ -161,7 +159,7 @@ Can be invoked from external tools or the browser for manual pipeline execution.
 Timer-triggered Azure Function that runs periodically (e.g., every 15 minutes) to automatically ingest new train data.
 
 Ensures data freshness by continuously polling the iRail API and updating the database.
----
+
 
 ##  Challenges & Solutions Implemented
 
