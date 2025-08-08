@@ -90,7 +90,9 @@ def populate_disturbances(api: IRailAPI, repo: TrainDataRepository) -> None:
 
 def ingest_all_data():
     print("STEP 1: Start ingestion process")
-
+    start_time = datetime.now()
+    stations_processed = 0
+    trains_processed = 0
     # Hardcoded credentials (TEMP TEST ONLY)
     server = "train-sql-serve-hajer.database.windows.net"
     database = "train-data-db"
@@ -117,10 +119,11 @@ def ingest_all_data():
         for station_code in stations_to_ingest:
             print(f"    → Ingesting liveboard for: {station_code}")
             ingestor.ingest_liveboard(station_code)
-
+            stations_processed += 1
+            
         print("STEP 8: Gathering train IDs from departures")
         train_ids_set = set()
-        for station_code in stations_to_ingest[:5]:
+        for station_code in stations_to_ingest:
             board = api.get_liveboard(station=station_code)
             departures = board.get("departures", {}).get("departure", [])
             for dep in departures:
@@ -141,6 +144,10 @@ def ingest_all_data():
 
         print("STEP 12: Ingestion finished ")
 
+        end_time = datetime.now()
+        duration = end_time - start_time
+        print(f"STEP 12: Ingestion finished in {duration}")
+        print(f"Statistics: {stations_processed} stations, {trains_processed} trains")
     except Exception as e:
         print(f"ERROR during ingestion: {e}")
         raise

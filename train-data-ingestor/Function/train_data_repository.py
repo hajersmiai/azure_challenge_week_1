@@ -86,7 +86,7 @@ class TrainDataRepository:
         select_sql = text("""
             SELECT TrainID
             FROM Train
-            WHERE TrainNumber = :train_number AND Operator = :operator
+            WHERE TrainNumber = train_number AND Operator = operator
         """)
 
         with self.engine.begin() as conn:
@@ -100,7 +100,7 @@ class TrainDataRepository:
 
             insert_sql = text("""
                 INSERT INTO Train (TrainNumber, TrainType, Operator, id)
-                VALUES (:train_number, :train_type, :operator, :vehicle_shortname);
+                VALUES (train_number, train_type, operator, vehicle_shortname);
 
                 SELECT CAST(SCOPE_IDENTITY() AS INT) AS TrainID;
             """)
@@ -132,17 +132,15 @@ class TrainDataRepository:
         with self.engine.begin() as conn:
         # Try by station code
             result = conn.execute(text("""
-                SELECT StationID FROM Station WHERE id = :station_code
-            """), {
-                "station_code": station_code
-            }).fetchone()
+                SELECT StationID FROM Station WHERE id = station_code
+            """)).fetchone()
 
             if result:
                 return result.StationID
 
             # Try by station name (fallback)
             result = conn.execute(text("""
-                SELECT StationID FROM Station WHERE StationName = :station_name
+                SELECT StationID FROM Station WHERE StationName = station_name
             """), {
                 "station_name": station_name
             }).fetchone()
@@ -156,8 +154,8 @@ class TrainDataRepository:
                     StationName, standard_name, latitude, longitude,
                     id, iri_url
                 ) VALUES (
-                    :station_name, :standard_name, :latitude, :longitude,
-                    :station_code, :iri_url
+                    station_name, standard_name, latitude, longitude,
+                    station_code, iri_url
                 );
 
                 SELECT CAST(SCOPE_IDENTITY() AS INT) AS StationID;
