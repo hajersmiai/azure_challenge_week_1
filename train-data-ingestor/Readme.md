@@ -58,7 +58,25 @@ The schema follows a **star-schema** logic to optimize analytical queries.
 ---
 
 ##  Components & Class Responsibilities
+## Project Structure
 
+```bash
+/Function
+│
+├── function.py                 # Diagnostic tests & manual triggers
+├── iRail_API.py                # Wrapper for all iRail API calls
+├── train_data_repository.py    # Interface with SQL database using SQLAlchemy
+├── train_data_ingestor.py      # Main data ingestion logic: departures, disturbances, connections
+├── DirectInsertor.py           # Deprecated: inserts raw iRail data without validation
+├── Train_repository.py         # Used with DirectInsertor for uncontrolled insertions
+│
+/train-http-ingestor
+├──__init__.py  # HTTP-triggered Function (endpoint: /ask)
+/train-timer-ingestor
+├──__init__.py # Timer-triggered ingestion every 15 min
+```
+
+---
 ### `DirectInsertor`
 Handles **direct ingestion** of raw API data to SQL (mainly for debug and full refreshes).
 
